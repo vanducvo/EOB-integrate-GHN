@@ -1,4 +1,4 @@
-import { AddressService, URIAddressServiceConfig } from 'service/addressService';
+import { URIAddressServiceConfig } from 'service/addressService';
 import { DistrictDto } from 'service/dto/districtDto';
 import { ProviceDto } from 'service/dto/provinceDto';
 import { WardDto } from 'service/dto/wardDto';
@@ -12,7 +12,7 @@ describe('Address Service - GHN', () => {
   const districtParamName = 'province_id';
   const wardUri = '/shiip/public-api/master-data/ward';
   const wardParamName = 'district_id';
-  const addressService: AddressService = new AddressServiceImpl(
+  const addressService: AddressServiceImpl = new AddressServiceImpl(
     baseUrl,
     token,
     {
@@ -31,7 +31,7 @@ describe('Address Service - GHN', () => {
   );
 
   it('shoud set base url', () => {
-    expect(addressService.getBaseURL()).toEqual(baseUrl);
+    expect(addressService.getBaseUrl()).toEqual(baseUrl);
   });
 
   it('should set token', () => {

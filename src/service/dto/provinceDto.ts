@@ -1,5 +1,5 @@
 export interface ProviceDto {
-    ProviceID: number,
-    ProviceName: string,
+    ProvinceID: number,
+    ProvinceName: string,
     Code: string
 }

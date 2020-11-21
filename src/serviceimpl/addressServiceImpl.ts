@@ -1,10 +1,12 @@
-import { URIAddressServiceConfig, AddressService, URIAddress } from "service/addressService";
-import { ProviceDto } from "service/dto/provinceDto";
+import { URIAddressServiceConfig, AddressService, URIAddress } from "../service/addressService";
+import { ProviceDto } from "../service/dto/provinceDto";
 import axios from 'axios';
-import MessageResponse from "service/messageReponse";
+import MessageResponse from "../service/messageReponse";
 import { URL } from 'url';
-import { DistrictDto } from "service/dto/districtDto";
-import { WardDto } from "service/dto/wardDto";
+import { DistrictDto } from "../service/dto/districtDto";
+import { WardDto } from "../service/dto/wardDto";
+import { ServiceResDto } from "service/dto/serviceDto";
+import Axios from "axios";
 
 export class AddressServiceImpl implements AddressService {
   private token: string;
@@ -19,6 +21,21 @@ export class AddressServiceImpl implements AddressService {
     this.token = token;
     this.baseUrl = baseUrl;
     this.config = config;
+  }
+
+  async getAvailableServices(toDistrict: number): Promise<ServiceResDto[]> {
+    const url = this.queryFrom(this.config.service);
+    const res = await Axios.post(url.href, {
+      shop_id: this.config.shop_id,
+      to_district: toDistrict,
+      from_district: this.config.district_id
+    }, {
+      headers: {
+        Token: this.token
+      }
+    });
+
+    return this.extractData<ServiceResDto[]>(res);
   }
 
   private queryFrom(uriAddress: URIAddress, value?: string): URL {
@@ -46,7 +63,7 @@ export class AddressServiceImpl implements AddressService {
     return this.token;
   }
 
-  public getBaseURL(): string {
+  public getBaseUrl(): string {
     return this.baseUrl;
   }
 

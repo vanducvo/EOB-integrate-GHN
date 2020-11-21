@@ -10,8 +10,8 @@ describe('Address Controller', () => {
 
     // stub getAllProvices
     addressService.getAllProvices = () => Promise.resolve([{
-      ProviceID: 0,
-      ProviceName: '0',
+      ProvinceID: 0,
+      ProvinceName: '0',
       Code: '0'
     },]
     );
@@ -66,6 +66,6 @@ describe('Address Controller', () => {
       .getAllWardsOfDistrict(districtId);
 
     expect(wards.length).toBeGreaterThan(0);
-    expect(wards[0].id).toEqual(0);
+    expect(wards[0].id).toEqual('0');
   })
 });
