@@ -5,8 +5,12 @@
   "repository": "git@github.com:vanducvo/EOB-integrate-GHN.git",
   "author": "Van Duc Vo <vanducvo.dev@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "v12.18.3"
+  },
   "scripts": {
     "start": "tsc && (cd dist/src && node app.js)",
+    "postinstall": "tsc",
     "test": "jest"
   },
   "dependencies": {

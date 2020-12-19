@@ -1,0 +1,1 @@
+web: (cd dist/src && node app.js)
