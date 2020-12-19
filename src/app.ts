@@ -11,7 +11,7 @@ import momo from './momo/index';
 dotenv.config();
 
 const app = express();
-const port = 8080;
+const port = 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
