@@ -6,13 +6,12 @@ import bodyParser from 'body-parser';
 
 import dotenv from 'dotenv';
 import cors from 'cors';
+import momo from './momo/index';
 
 dotenv.config();
 
 const app = express();
 const port = 8080;
-
-console.log(process.env);
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -24,12 +23,14 @@ app.get('/', (req, res) => {
 app.use('/address', addressRouter);
 app.use('/order', orderRouter);
 
+app.use('/init-payment', momo.initPaymentRoute);
+app.use('/ipn-payment', momo.ipnPaymentRoute);
 
 app.use((err, req, res, next) => {
-  res.json({message: 'Whops! Somthing Wrong :)'});
+  res.json({ message: 'Whops! Somthing Wrong :)' });
   res.end();
 });
 
 app.listen(port, () => {
-    console.log(`Run At: http://localhost:${port}`);
+  console.log(`Run At: http://localhost:${port}`);
 });
