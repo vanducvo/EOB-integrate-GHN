@@ -12,19 +12,19 @@ export function getAdressController(): AddressController {
 
     addressController = new AddressController(
       new AddressServiceImpl(
-        process.env.BASE_URL,
-        process.env.TOKEN,
+        'https://dev-online-gateway.ghn.vn/',
+        '278194ce-0bc5-11eb-84a9-aef8461f938e',
         {
           province: {
-            uri: process.env.URI_PROVINCE
+            uri: '/shiip/public-api/master-data/province'
           },
           district: {
-            uri: process.env.URI_DISTRICT,
-            paramName: process.env.PARAM_NAME_DISTRICT
+            uri: '/shiip/public-api/master-data/district',
+            paramName: 'province_id'
           },
           ward: {
-            uri: process.env.URI_WARD,
-            paramName: process.env.PARAM_NAME_WARD
+            uri: '/shiip/public-api/master-data/ward',
+            paramName: 'district_id'
           },
           district_id: 1463,
           shop_id: 75578,
@@ -43,8 +43,8 @@ export function getAdressController(): AddressController {
 export function getOrderController(): OrderController{
   if(!orderController){
     orderController = new OrderController(new OrderServiceImpl(
-      process.env.BASE_URL,
-      process.env.TOKEN,
+      'https://dev-online-gateway.ghn.vn/',
+      '278194ce-0bc5-11eb-84a9-aef8461f938e',
       {
         create: '/shiip/public-api/v2/shipping-order/create',
         fee: '/shiip/public-api/v2/shipping-order/fee',
